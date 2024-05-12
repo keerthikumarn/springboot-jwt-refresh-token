@@ -1,32 +1,25 @@
 package com.springboot.jwt.refresh.token.entity;
 
-import java.time.Instant;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class RefreshToken {
-
+@AllArgsConstructor
+public class UserInfo {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String token;
-    private Instant expiryDate;
+    private String name;
+    private String email;
+    private String password;
+    private String roles;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserInfo userInfo;
 }
