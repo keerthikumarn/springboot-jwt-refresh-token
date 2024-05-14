@@ -51,7 +51,7 @@ public class EmployeeService {
         empList = IntStream.rangeClosed(1, 100)
                 .mapToObj(index -> Product.builder()
                         .empNo(index)
-                        .name("User_ " + index)
+                        .name("Employee_ " + index)
                         .designation("tech architect")).build()
                 ).collect(Collectors.toList());
     }
