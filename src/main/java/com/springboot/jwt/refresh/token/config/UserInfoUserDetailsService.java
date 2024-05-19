@@ -8,20 +8,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.springboot.jwt.refresh.token.entity.UserInfo;
-import com.springboot.jwt.refresh.token.repo.UserInfoRepository;
+import com.springboot.jwt.refresh.token.entity.EmployeeInfo;
+import com.springboot.jwt.refresh.token.repo.EmployeeInfoRepository;
 
 @Component
 public class UserInfoUserDetailsService implements UserDetailsService {
 	
 	@Autowired
-	private UserInfoRepository userInfoRepo;
+	private EmployeeInfoRepository empInfoRepo;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<UserInfo> userInfo = userInfoRepo.findByName(username);
+	public UserDetails loadUserByUsername(String empName) throws UsernameNotFoundException {
+		Optional<EmployeeInfo> userInfo = empInfoRepo.findByName(empName);
 		return userInfo.map(UserInfoUserDetails::new)
-				.orElseThrow(() -> new UsernameNotFoundException("User : " + username + " not found"));
+				.orElseThrow(() -> new UsernameNotFoundException("Employee : " + empName + " not found"));
 	}
 
 }

@@ -9,8 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.springboot.jwt.refresh.token.dto.Employee;
-import com.springboot.jwt.refresh.token.entity.UserInfo;
-import com.springboot.jwt.refresh.token.repo.UserInfoRepository;
+import com.springboot.jwt.refresh.token.entity.EmployeeInfo;
+import com.springboot.jwt.refresh.token.repo.EmployeeInfoRepository;
 
 import jakarta.annotation.PostConstruct;
 
@@ -20,7 +20,7 @@ public class EmployeeService {
 	private List<Employee> empList = null;
 
 	@Autowired
-	private UserInfoRepository userInfoRepo;
+	private EmployeeInfoRepository userInfoRepo;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -36,7 +36,7 @@ public class EmployeeService {
                 .orElseThrow(() -> new RuntimeException("Employee with id: " + id + " not found"));
 	}
 	
-	public String addUser(UserInfo userInfo) {
+	public String addNewEmployee(EmployeeInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         userInfoRepo.save(userInfo);
         return "user added to system ";

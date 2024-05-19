@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springboot.jwt.refresh.token.entity.RefreshToken;
+import com.springboot.jwt.refresh.token.repo.EmployeeInfoRepository;
 import com.springboot.jwt.refresh.token.repo.RefreshTokenRepository;
-import com.springboot.jwt.refresh.token.repo.UserInfoRepository;
 
 @Service
 public class RefreshTokenService {
@@ -18,10 +18,10 @@ public class RefreshTokenService {
 	private RefreshTokenRepository refreshTokenRepository;
 
 	@Autowired
-	private UserInfoRepository userInfoRepository;
+	private EmployeeInfoRepository empInfoRepository;
 
-	public RefreshToken createRefreshToken(String username) {
-		RefreshToken refreshToken = RefreshToken.builder().userInfo(userInfoRepository.findByName(username).get())
+	public RefreshToken createRefreshToken(String empName) {
+		RefreshToken refreshToken = RefreshToken.builder().empInfo(empInfoRepository.findByName(empName).get())
 				.token(UUID.randomUUID().toString()).expiryDate(Instant.now().plusMillis(600000)).build();
 		return refreshTokenRepository.save(refreshToken);
 	}
