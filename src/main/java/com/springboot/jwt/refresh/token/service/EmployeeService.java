@@ -1,7 +1,6 @@
 package com.springboot.jwt.refresh.token.service;
 
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -44,15 +43,10 @@ public class EmployeeService {
     }
 	
 	@PostConstruct
-    public void loadEmployeesFromDB() {
-        empList = IntStream.rangeClosed(1, 100).mapToObj(index -> Employee.builder().empNo(index)
-        		.name("user_"+index).designation("tech arch").build()).collect(Collectors.toList());
-        
-        empList = IntStream.rangeClosed(1, 100)
-                .mapToObj(index -> Product.builder()
-                        .empNo(index)
-                        .name("Employee_ " + index)
-                        .designation("tech architect")).build()
-                ).collect(Collectors.toList());
-    }
+	public void loadEmployeesFromDB() {
+		empList = IntStream.rangeClosed(1, 100)
+				.mapToObj(
+						index -> Employee.builder().empNo(index).name("user_" + index).designation("tech arch").build())
+				.collect(Collectors.toList());
+	}
 }
