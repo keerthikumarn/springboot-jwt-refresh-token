@@ -53,8 +53,8 @@ public class AppSecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests(requests -> requests
-                .requestMatchers("/employee/signUp", "/employee/login", "/employee/refreshToken").permitAll())
-                .authorizeHttpRequests(requests -> requests.requestMatchers("/employee/**").authenticated()).sessionManagement(management -> management
+                .requestMatchers("/employees/signUp", "/employees/login", "/employees/refreshToken").permitAll())
+                .authorizeHttpRequests(requests -> requests.requestMatchers("/employees/**").authenticated()).sessionManagement(management -> management
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();

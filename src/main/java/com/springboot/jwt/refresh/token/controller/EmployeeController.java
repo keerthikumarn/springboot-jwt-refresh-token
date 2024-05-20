@@ -68,7 +68,7 @@ public class EmployeeController {
 		return empService.addNewEmployee(empInfo);
 	}
 
-	@GetMapping("all")
+	@GetMapping("/all")
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public List<Employee> getAllEmployees() {
 		return empService.getEmpList();
